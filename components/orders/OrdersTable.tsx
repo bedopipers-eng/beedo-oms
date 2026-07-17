@@ -2,16 +2,36 @@
 
 import { orders } from "./DummyData";
 import OrderStatus from "./OrderStatus";
+import OrderActions from "./OrderActions";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
+import {
+  MoreHorizontal,
+  Eye,
+  Pencil,
+  Printer,
+  Trash2,
+} from "lucide-react";
 export default function OrdersTable() {
+
+  const handleView = (order: any) => {
+    console.log(order);
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow overflow-hidden">
       <table className="w-full">
         <thead className="bg-slate-100">
           <tr className="text-left">
-            <th className="p-4">
-              <input type="checkbox" />
-            </th>
+          <th className="p-4">
+  <input type="checkbox" />
+</th>
+
 
             <th className="p-4">Order</th>
 
@@ -42,6 +62,9 @@ export default function OrdersTable() {
             <th className="p-4 text-center">
               Status
             </th>
+            <th className="p-4 text-center">
+  الإجراءات
+</th>
           </tr>
         </thead>
 
@@ -91,9 +114,15 @@ export default function OrdersTable() {
                 {order.tracking}
               </td>
 
-              <td className="p-4 text-center">
-                <OrderStatus status={order.status} />
-              </td>
+             <td className="p-4 text-center">
+  <OrderStatus status={order.status} />
+</td>
+<td className="p-4 text-center">
+ <OrderActions
+  order={order}
+  onView={handleView}
+/>
+</td>
             </tr>
           ))}
         </tbody>
